@@ -32,8 +32,6 @@ We used the [Google Maps Visualization Library](https://developers.google.com/ma
 
 In our call to action, we focused on easy, actionable ways to help monitor and reduce bird collisions. The REPORT action includes quick explanation of bird collision monitoring, the JOIN US action prompts the user to sign a pledge to reduce light pollution, and the GET INVOLVED action links the user to opportunities to join the monitoring project as a volunteer. I helped code up the prototype and created the hero image of the Atlanta skyline.
 
-<div class="row">
-  <div class="col-lg-12 pt-4">
-  	<img class="prototype" src="/assets/img/design/gh_prototype.jpg" alt="Desktop design"/>
-  </div>
+<div class="image-series">
+	<img class="prototype" src="/assets/img/design/gh_prototype.jpg" alt="Desktop design"/>
 </div>

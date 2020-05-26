@@ -18,10 +18,8 @@ Alas, wouldn't it be cool if we had UDP support in the browser?[^2] I can only n
 
 ## And Now, Double Time
 
-<div class="row">
-  <div class="col-lg-12 pt-4 pb-4">
-  	<img class="prototype" src="/assets/img/design/etiquette2.svg" alt="etiquette book by emily post"/>
-  </div>
+<div class="image-series">
+  <img class="prototype" src="/assets/img/design/etiquette2.svg" alt="etiquette book by Emily post"/>
 </div>
 > **The test of good manners is to be able to put up pleasantly with bad ones.
 -- Wendell Willkie**
@@ -36,10 +34,8 @@ Was it possible to create a bidirectional connection based protocol with the rel
 
 ## Enter, WebSockets
 
-<div class="row">
-  <div class="col-lg-12 pt-4 pb-4">
-  	<img class="prototype" src="/assets/img/design/internet_protocol.svg" alt="Internet protocol intrigue"/>
-  </div>
+<div class="image-series">
+  <img class="prototype" src="/assets/img/design/internet_protocol.svg" alt="Internet protocol intrigue"/>
 </div>
 > **“The world was my oyster but I used the wrong fork.”
 -- Oscar Wilde**
@@ -64,10 +60,7 @@ I enjoyed learning about WebSockets for work and with the confidence of a beginn
 
 WebSockets had a contentious beginning[^8] and a very unstable spec for some time[^9]. It reminds one of Princess Maria Argyropoulina, who scandalized Venice by having guests at her wedding use the novel fork in place of their God-given hands[^10]. St. Peter Damian, a hermit and ascetic, was so offended by the princess's daintiness that he declared her untimely death from the plague a just punishment by God for her vanity. Maybe at first WebSockets seemed like a vestigial limb growing out of HTTP, but like forks, we can't imagine living without them now.
 
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-### Footnotes
+#### Footnotes
 
 [^1]: Doing away with these social niceties allows the UDP header to be [only 8 bytes compared to TCP's 20 bytes](https://www.geeksforgeeks.org/user-datagram-protocol-udp/).
 [^2]: I wonder if there was talk about adding UDP support for the web during the browser wars raged between Netscape and Microsoft from 1995 to 2001, but I wasn't there, I was spilling my guts to SmarterChild at my best friend's house.

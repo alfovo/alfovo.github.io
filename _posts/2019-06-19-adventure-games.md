@@ -12,10 +12,8 @@ For my second talk at [Tech Confluence](https://www.meetup.com/TechConfluence/ev
 
 An adventure game is a computer game in which the player assumes the role of a protagonist in an interactive story driven by exploration and puzzle-solving.
 
-<div class="row">
-  <div class="col-lg-12 pt-2 pb-4">
-  	<img class="prototype" src="https://adventuregames631.files.wordpress.com/2017/06/cropped-scumm_legacy.jpg" alt="My office on Camelot Ln"/>
-  </div>
+<div class="image-series">
+	<img class="prototype" src="https://adventuregames631.files.wordpress.com/2017/06/cropped-scumm_legacy.jpg" alt="Scumm characters"/>
 </div>
 
 People of the 21st century are fascinated by the idea virtual world changing humanity's relationship with the physical world. Every two bit op-ed writer on a deadline has something to say about how virtual reality is rending the fabric of our very existence. It's preventing us from concentrating on work, undermining our relationships, making us violent and radicalized, giving us bad taste, rendering fact indiscernible from fiction. Or it's facilitating grass roots political movements on an unprecedented scale, opening up new markets, providing the only remaining jobs, improving our access to information, allowing us to work anywhere but also all the time.
