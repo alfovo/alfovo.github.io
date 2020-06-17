@@ -2,10 +2,15 @@
 # Styling for the post layout
 ---
 
-// @import "main";
+
 @mixin sans-serif-font {
   font: 400 16px/1.5 avenir next, avenir, -apple-system, BlinkMacSystemFont,
     helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  @content;
+}
+
+@mixin monospace-font {
+  font: 400 12px/1 monaco, menlo, courier, monospace;
   @content;
 }
 
@@ -84,6 +89,15 @@ $very-soft-gray: #e8e8e8;
   & li:last-child svg {
     padding-right: 5px;
   }
+  & li span {
+    margin: 3px;
+  }
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
 }
 
 .prototype {
@@ -93,4 +107,8 @@ $very-soft-gray: #e8e8e8;
 blockquote {
   font-size: 1rem;
   letter-spacing: 1.25px;
+}
+
+code {
+  @include monospace-font;
 }
