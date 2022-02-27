@@ -67,7 +67,7 @@ GEM
     safe_yaml (1.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
-    svg_optimizer (0.2.6)
+    svg_optimizer (0.2.5)
       nokogiri
     terminal-table (2.0.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
