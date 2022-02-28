@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Updating this Website
-date: 2020-05-23 14:49:03 -0500
+title: Updating This Website
+date: 2020-05-10 14:49:03 -0500
 tags: [front-end, update]
 thumbnail: /assets/img/design/website_update.svg
 ---
