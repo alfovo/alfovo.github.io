@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PFAS Solutions
-date: 2020-06-23 14:49:03 -0500
+date: 2021-01-26 14:49:03 -0500
 tags: [illustration, branding, pfas]
 thumbnail: /assets/img/design/pfas_solutions.svg
 ---
