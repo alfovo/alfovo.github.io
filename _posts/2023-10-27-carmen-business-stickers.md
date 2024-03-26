@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Liberace Business Stickers
+title: Carmen's Business Stickers
 date: 2023-10-27 14:49:03 -0500
 tags: [illustration, branding, carmen]
 thumbnail: /assets/img/design/thumbnail_carmen.svg
