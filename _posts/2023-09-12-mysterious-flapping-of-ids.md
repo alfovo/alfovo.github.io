@@ -14,15 +14,15 @@ A user's browsing session represents the time that user is active on the applica
 
 ## What’s the bug?
 
-This bug first surfaced when we noticed multiple users that logged in consecutively on the same device sharing a browsing session ID. While looking at the Fastly logs I also noticed that the initial series of requests a user makes on mobile web causes a toggling or “flapping” between requests. This behavior suggests there must be a general problem with clearing an old browsing session and establishing a new browsing session.
+This bug first surfaced when we noticed multiple users that logged in consecutively on the same device shared a browsing session ID. While looking at the Fastly logs, I also noticed that the initial series of requests a user makes on mobile web causes a toggling or “flapping” between requests. This behavior suggests there must be a general problem with clearing an old browsing session and establishing a new one.
 
-I was able to reproduce the behavior where the same browsing session ID persisted for me after logout. When I looked at the logs for my IP address, I noticed that for a logout request preceded by other requests in the same second, the browsing session ID never updated. I also saw requests that completed milliseconds apart caused the browsing session ID to “flap” between several values until settling on one value. It became clear that we had a race condition: when many simultaneous requests occur as a new browsing session is set, it causes the browsing session ID to “flap” or toggle between a few different values, sometimes landing on the old browsing session ID and sometimes a new one.
+I was able to reproduce the behavior where my same browsing session ID persisted after I logged out. When I looked at the logs for my IP address, I noticed that for a logout request preceded by other requests in the same second, the browsing session ID never updated. I also saw requests that completed milliseconds apart caused the browsing session ID to “flap” between several values until settling on one value. It became clear that we had a race condition: when many simultaneous requests occur as a new browsing session is set, it causes the browsing session ID to “flap” or toggle between a few different values, sometimes landing on the old browsing session ID and sometimes a new one.
 
 ![bsid "flapping" case]({{ "/assets/img/system_diagrams/bsbug_flapping.svg" | absolute_url }})
 
 ## What’s the fix?
 
-So, while it makes the code more complicated, I prevented the race condition by making two changes:
+How would you solve this? While it makes the code more complicated, I took a stab at it by making two changes:
 
 1. I decoupled the browsing session ID and expiration into two cookies.
 2. I increment the ID when it is expired.
@@ -52,8 +52,8 @@ What about the cases in which there are synchronous requests when a new browsing
 
 ## Conclusion
 
-By decoupling the ID and expiration, and incrementing the ID on expiration, we’ve solved the “flapping” that occurs when a user logs out or stops interacting with the mobile app or Khan Academy browser tab for a half hour. We still observe that a lot of IDs are generated when the user begins browsing, especially with all the simultaneous requests on mobile, however, we don’t see the “flapping” back and forth between IDs nor do we see one ID being associated with multiple authenticated users.
+Huzzah! We’ve solved the “flapping” that occurs when a user logs out or stops interacting with the mobile app or Khan Academy browser tab for half an hour. We still observe that a lot of IDs are generated when the user begins browsing, especially with all the simultaneous requests on mobile, however, we don’t see the “flapping” back and forth between IDs nor do we see one ID being associated with multiple authenticated users.
 
-It was difficult solving this bug without being able to order requests based on their start time. In order to make progress on it I had to diagram my mental model of the problem and complain about it a lot to my friends and colleagues. As with poems or stories, I owe all my ideas to conversations I've had with friends. Thank you if you are one of them and have read through this long post at my request.
+It was difficult solving this bug without being able to order requests based on their start time. To make progress on it I had to diagram my mental model of the problem and complain about it a lot to my friends and colleagues. If you are one of them and have read through this long post at my request, thank you.
 
 ![Summer trees]({{ "/assets/img/gouache/summer_trees.png" | absolute_url }})
