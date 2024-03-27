@@ -2,7 +2,7 @@
 layout: post
 title: The Mystery of "Flapping" IDs
 date: 2023-09-12 14:49:03 -0500
-tags: [code, data, talk]
+tags: [code, talk, trees]
 thumbnail: /assets/img/gouache/summer_tree_thumbnail.png
 ---
 
