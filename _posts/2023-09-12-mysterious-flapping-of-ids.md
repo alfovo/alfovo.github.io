@@ -24,8 +24,8 @@ I was able to reproduce the behavior where my same browsing session ID persisted
 
 How would you solve this? While it makes the code more complicated, I took a stab at it by making two changes:
 
-1. I decoupled the browsing session ID and expiration into two cookies.
-2. I increment the ID when it expires.
+1. Decoupling the browsing session ID and its expiration into two cookies.
+2. Incrementing the ID in Fastly when it expires.
 
 In order to reason about how to solve this bug, I drew a diagram of the expected behavior for seven cases, including the three race conditions.
 
@@ -54,6 +54,8 @@ What about the cases in which there are synchronous requests when a new browsing
 
 Huzzah! We’ve solved the “flapping” that occurs when a user logs out or stops interacting with the mobile app or Khan Academy browser tab for half an hour. We still observe that a lot of IDs are generated when the user begins browsing, especially with all the simultaneous requests on mobile, however, we don’t see the “flapping” back and forth between IDs nor do we see one ID being associated with multiple authenticated users.
 
-It was difficult solving this bug without being able to order requests based on their start time. To make progress on it I had to diagram my mental model of the problem and complain about it a lot to my friends and colleagues. If you are one of them and have read through this long post at my request, thank you.
+It was difficult solving this bug without being able to order requests by start time. I also had solve it in both [Fastly VCL](https://www.fastly.com/documentation/guides/vcl/using/) and Rust, which I had never worked with before. I enjoyed Rust, four bags of popcorn, would recommend.
+
+To make progress, I had to diagram my mental model of the problem and complain about it a lot to my friends and colleagues. If you are one of them and have read through this long post at my request, thank you.
 
 ![Summer trees]({{ "/assets/img/gouache/summer_trees.png" | absolute_url }})
