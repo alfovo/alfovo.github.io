@@ -6,11 +6,11 @@ tags: [code, talk, trees]
 thumbnail: /assets/img/gouache/summer_tree_thumbnail.png
 ---
 
-This week I solved and extremely satisfying bug that caused a single user's activity on the Khan Academy website and mobile application to be incorrectly associated with multiple users. I’d like to do a future presentation on this bug at Tech Confluence, but here are some of the more juicy details, still fresh in my mind.
+This week I solved an extremely satisfying bug that caused a single user's activity on the Khan Academy website and mobile application to be incorrectly associated with multiple users. Eventually I’d like to present it to Tech Confluence, but while it's still fresh in my mind, here are the juicy details.
 
 ## What’s a Browsing Session?
 
-A user's browsing session represents the time that user is active on the application. We set it when they first land on the site or open the mobile app, via a `browsing_session_id` cookie in Fastly, our CDN, and reset it if they've been inactive for 30 minutes or log out.
+A user's browsing session represents the time that user is active on the application. We set it when they first land on the site or open the mobile app, via a `browsing_session_id` cookie in Fastly, our CDN, and we reset it if they've been inactive for 30 minutes or log out.
 
 ## What’s the bug?
 
@@ -25,7 +25,7 @@ I was able to reproduce the behavior where my same browsing session ID persisted
 How would you solve this? While it makes the code more complicated, I took a stab at it by making two changes:
 
 1. I decoupled the browsing session ID and expiration into two cookies.
-2. I increment the ID when it is expired.
+2. I increment the ID when it expires.
 
 In order to reason about how to solve this bug, I drew a diagram of the expected behavior for seven cases, including the three race conditions.
 
@@ -33,8 +33,8 @@ In order to reason about how to solve this bug, I drew a diagram of the expected
 
 I started with the four most simple situations, including the three in which we want to start a new browsing session:
 
-- Case 1: When the user is first interacting with the application, in which case their browser will not already have a browsing session ID nor expiration cookie.
-- Case 2: When the user is has last interacted with the application less than 30 minutes ago, in which case their browser will have both the browsing session ID and expiration cookie.
+- Case 1: When the user first interacts with the application, in which case their browser won't already have a browsing session ID nor an expiration cookie.
+- Case 2: When the user has last interacted with the application less than 30 minutes ago, in which case their browser will have both the browsing session ID and expiration cookie.
 - Case 3: When the user has not interacted with the application for 30 minutes, in which case their browser will have cleared the browsing session expiration cookie.
 - Case 4: When a user logs out and a response from the backend expires the cookie, which is then cleared by the browser.
 
@@ -46,7 +46,7 @@ What about the cases in which there are synchronous requests when a new browsing
 
 - Case 5, a synchronous version of Case 4: When a user logs out and a response from the backend expires the cookie, which is then cleared by the browser.
 - Case 6, a synchronous version of Case 3: When the user has not interacted with the application for 30 minutes, in which case their browser will have cleared the browsing session expiration cookie.
-- Case 7, a synchronous version of Case 1: When the user is first interacting with the application, in which case their browser will not already have a browsing session ID nor expiration cookie.
+- Case 7, a synchronous version of Case 1: When the user first interacts with the application, in which case their browser will not already have a browsing session ID nor an expiration cookie.
 
 ![Complex bsid behavior cases]({{ "/assets/img/system_diagrams/bsbug_hard_cases.svg" | absolute_url }})
 
